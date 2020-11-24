@@ -1,11 +1,11 @@
     <?php
 
-    include ('recursos/conexion.php');
+    include('recursos/conexion.php');
     $consulta = "SELECT idCliente, nombre, paterno, materno, direccion, correo, telefono FROM clientes";
     $resultado = mysqli_query($conexion,$consulta) or die("<b>algo salio mal con la consulta</b>");
 
     //var_dump($_POST);
-
+    
     $usuario = $_POST['user'];
     $clave = $_POST['pass'];
 
@@ -16,16 +16,16 @@
     }
 
     if ($usuario == 'paulo' && $clave == '1234') {
-        echo "Bienvenido ".$usuario; // si le coloco $mensaje me da error 500 y cuando quiero mostrar la tabla no me reconoce bootstrap
+        $mensaje =  "Bienvenido " . $usuario; // si le coloco $mensaje me da error 500 y cuando quiero mostrar la tabla no me reconoce bootstrap
     }else {
         //echo "Acceso denegado";
-        header('location:inde.html');
+        header('location:index.html');
     }
 
     include('templates/header.php');
     ?>
 
-    <div class="containter -mt-5">
+    <div class="containter mt-5">
         <div class="alert alert-success">
             <?php echo $mensaje;?>
         </div>
@@ -53,10 +53,10 @@
                             <td><?php echo $fila['materno'];?></td>
                             <td><?php echo $fila['direccion'];?></td>
                             <td><?php echo $fila['correo'];?></td>
-                            <td><?php echo $fila['fono'];?></td>
+                            <td><?php echo $fila['telefono'];?></td>
                         </tr>
                     <?php }//Cerramos el while
-                        mysqli_close($consulta);
+                        mysqli_close($conexion);
                     ?>
                 </tbody>
             </table>
@@ -66,5 +66,5 @@
 
 
     <?php
-    include('template/footer.php');
+    include('templates/footer.php');
     ?>
