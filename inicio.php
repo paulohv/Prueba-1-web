@@ -25,11 +25,11 @@
     include('templates/header.php');
     ?>
 
-    <div class="containter mt-5">
+    <div class="containter mt-12 align=ceter" >
         <div class="alert alert-success">
             <?php echo $mensaje;?>
         </div>
-        <div class="row">
+        <div class="row col-9">
             <table class="table table-hover table-dark">
                 <thead>
                     <tr>
@@ -46,7 +46,6 @@
                     <?php while ($fila = mysqli_fetch_assoc($resultado)) { //abrimos el while?>
                         <!-- escribir html-->
                         <tr>
-                            <td scope="row"></td>
                             <td><?php echo $fila['idCliente'];?></td>
                             <td><?php echo $fila['nombre'];?></td>
                             <td><?php echo $fila['paterno'];?></td>
@@ -60,7 +59,7 @@
                     ?>
                 </tbody>
             </table>
-            </div>
+        </div>
     </div>
 
 

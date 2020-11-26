@@ -8,7 +8,7 @@ class Conexion{
     protected $conexion;
     protected $secured;
 
-    //constructor 
+    //2 constructor 
     function __construct(){
         $this->conexion = new myslqi($this->$server,$this->user,$this->pass,$this->db);
         
@@ -17,7 +17,10 @@ class Conexion{
         }
     }
 
+    //3 metodos propios 
+    //recibe un texto como argumento o parametros
     public function proteger_text ($text){
+        // strip_tags elimina las etiquetas html o php que trae el texto recibido    
         $this->secured = trip_tags ($text);
         $this->secured = htmlspecialchars(trim(stripslashes($text)),ENT_QUOTES,"UTF8");
 
