@@ -6,9 +6,22 @@ class Accesos extends Conexion{
         parent::__construct();
         return $this;
     }
-    public function login(){
+
+    public function login(){// completar metodo para logear con la pagina principal
+        $data = (count(func_get_args()) > 0 ) ? func_get_args()[0] : func_get_args();
+
+        $sql = "SELECT nombre, apellido, correo,  pass, perfil FROM usuarios WHERE correo = ? ";
+
+        $consulta = $this->prepare($sql);
+        
+        $consulta->bind_param('s', $usuario);
+
+        $usuario = $data['usuario'];
 
     }
+    
+
+
 
 }
 

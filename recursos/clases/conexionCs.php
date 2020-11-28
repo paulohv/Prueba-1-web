@@ -41,7 +41,7 @@ class Conexion{
         }
         return $sentencia;
     }
-
 }
 
+$conexion = new Conexion;
 ?>

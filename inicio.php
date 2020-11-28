@@ -9,18 +9,7 @@
     $usuario = $_POST['user'];
     $clave = $_POST['pass'];
 
-    if (empty($_POST['estado'])){
-        $estado = "inactivo";
-    }else{
-        $estado = "activo";
-    }
 
-    if ($usuario == 'paulo' && $clave == '1234') {
-        $mensaje =  "Bienvenido " . $usuario; // si le coloco $mensaje me da error 500 y cuando quiero mostrar la tabla no me reconoce bootstrap
-    }else {
-        //echo "Acceso denegado";
-        header('location:index.html');
-    }
 
     include('templates/header.php');
     ?>
