@@ -1,5 +1,6 @@
 <?php 
-include('../clases/accesosCs.php');
+session_start();
+include('../funciones/login.php');
 
 
  
@@ -13,6 +14,16 @@ if (isset($_POST['boton'])) {
     );
 }
 
-$login = json_decode($accesos->login($params));   
+$login = $accesos->login($params);   
+var_dump($login);
+//Evaluamos la respuesta del metodo login 
+if($login['estado'] == true){
+    echo "<b>Iniciado Correctamente</b>";
+    $_SESSION['nombreCompleto']= $login['nombre']. " " .$login['apellido'];
+    $_SESSION['perfil']= $login['perfil'];
+    header("location:../principal.html");
+}else{
+    header("location:../../index.html");
+}
 
 ?>

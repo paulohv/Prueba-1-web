@@ -1,8 +1,9 @@
     <?php
-
-    include('recursos/conexion.php');
-    $consulta = "SELECT idCliente, nombre, paterno, materno, direccion, correo, telefono FROM clientes";
-    $resultado = mysqli_query($conexion,$consulta) or die("<b>algo salio mal con la consulta</b>");
+    session_start();
+    include('recursos/clases/accesosCS.php'); 
+    //include('recursos/conexion.php');
+    //$consulta = "SELECT idCliente, nombre, paterno, materno, direccion, correo, telefono FROM clientes";
+    //$resultado = mysqli_query($conexion,$consulta) or die("<b>algo salio mal con la consulta</b>");
 
     //var_dump($_POST);
     
@@ -15,9 +16,7 @@
     ?>
 
     <div class="containter mt-12 align=ceter" >
-        <div class="alert alert-success">
-            <?php echo $mensaje;?>
-        </div>
+        
         <div class="row col-9">
             <table class="table table-hover table-dark">
                 <thead>
