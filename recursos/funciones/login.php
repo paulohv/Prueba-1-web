@@ -1,10 +1,11 @@
-<?php 
+<?php
 session_start();
-include('../funciones/login.php');
+//var_dump($_POST);
+include('../clases/accesosCs.php');
 
 
  
-if (isset($_POST['boton'])) {
+if (!isset($_POST['boton'])) {
     $usuario = $_POST['user'];
     $pass = $_POST['pass'];
 

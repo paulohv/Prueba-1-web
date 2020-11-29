@@ -6,19 +6,15 @@ class Accesos extends Conexion{
         parent::__construct();
         return $this;
     }
-
     public function login(){// completar metodo para logear con la pagina principal
         $data = (count(func_get_args()) > 0 ) ? func_get_args()[0] : func_get_args();
-
         $sql = "SELECT nombre, apellido,correo,  pass, perfil FROM usuarios WHERE correo = ? ";
-
-        $consulta = $this->prepare($sql);
         
+        $consulta = $this->prepare($sql);       
         $consulta->bind_param('s', $usuario);
-
         //rescatamos las variables locales del login.php
         $usuario = $data['usuario'];
-
+        
         $pass = $data['pass'];
         //ejecutamos la consulta
         $this->execute($consulta);
@@ -42,9 +38,7 @@ class Accesos extends Conexion{
                 );
             }
             //retornar en un arreglo con los resultados 
-            return $info;
-        
-            
+            return $info;            
         }
     }
     $accesos = new Accesos;

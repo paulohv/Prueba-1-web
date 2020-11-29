@@ -1,11 +1,7 @@
     <?php
     session_start();
-    include('recursos/clases/accesosCS.php'); 
-    //include('recursos/conexion.php');
-    //$consulta = "SELECT idCliente, nombre, paterno, materno, direccion, correo, telefono FROM clientes";
-    //$resultado = mysqli_query($conexion,$consulta) or die("<b>algo salio mal con la consulta</b>");
-
-    //var_dump($_POST);
+    include('recursos/clases/accesosCs.php'); 
+   
     
     $usuario = $_POST['user'];
     $clave = $_POST['pass'];

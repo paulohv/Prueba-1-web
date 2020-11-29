@@ -1,27 +1,28 @@
 <?php
+
 class Conexion{
     // 1 atributos 
-    private $server ="localhost";
-    private $user ="usuario723";
-    private $pass = "asd123";
+    private $server = "localhost:8888";
+    private $user = "root";
+    private $pass = "";
     private $db = "web723";
     protected $conexion;
     protected $secured;
-
+    
     //2 constructor 
     function __construct(){
         $this->conexion = new myslqi($this->$server,$this->user,$this->pass,$this->db);
         
         if($this->conexion->connect_errno){
-            die ("Error al conectar con mysql (".$this->conexion->connect_errno)." ) ".$this->conexion->connect_errno ;
-        }
+            die("Error al conectar con mysql (".$this->conexion->connect_errno)." ) ".$this->conexion->connect_errno;
+        } 
     }
-
+    
     //3 metodos propios 
     //recibe un texto como argumento o parametros
-    public function proteger_text ($text){
+    public function proteger_text($text){
         // strip_tags elimina las etiquetas html o php que trae el texto recibido    
-        $this->secured = trip_tags ($text);
+        $this->secured = trip_tags($text);
         $this->secured = htmlspecialchars(trim(stripslashes($text)),ENT_QUOTES,"UTF8");
 
         return $this->secured;
