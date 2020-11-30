@@ -22,7 +22,8 @@ if($login['estado'] == true){
     echo "<b>Iniciado Correctamente</b>";
     $_SESSION['nombreCompleto']= $login['nombre']. " " .$login['apellido'];
     $_SESSION['perfil']= $login['perfil'];
-    header("location:../principal.html");
+    $_SESSION['correo']=$login['correo'];
+    header("location:../../principal.html");
 }else{
     header("location:../../index.html");
 }
