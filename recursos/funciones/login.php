@@ -16,10 +16,10 @@ if (!isset($_POST['boton'])) {
 }
 
 $login = $accesos->login($params);   
-var_dump($login);
+//var_dump($login);
 //Evaluamos la respuesta del metodo login 
 if($login['estado'] == true){
-    echo "<b>Iniciado Correctamente</b>";
+    //echo "<b>Iniciado Correctamente</b>";
     $_SESSION['nombreCompleto']= $login['nombre']. " " .$login['apellido'];
     $_SESSION['perfil']= $login['perfil'];
     $_SESSION['correo']=$login['correo'];
