@@ -3,7 +3,7 @@ session_start();
 include('templates/header.php');
 
 if(isset($_GET['mensaje'])){
-    $mensaje = "<div class='alert alert-danger'>".$_GET['mensaje']."</div>";
+    $mensaje = $_GET['mensaje'];
 }else{
     $mensaje = "";
 }

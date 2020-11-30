@@ -24,11 +24,17 @@ if(isset($_POST['btnRegistrar'])){
             'pass' => $pass,
             'perfil' => $perfil
         );
-        var_dump($params);
+        //var_dump($params);
         $respuesta = json_decode($usuario->guardar($params));
+        
+        if ($respuesta->estado==true) {
+            header("location: ../../usuarios.php?mensaje=<div class='alert alert-success'>".$respuesta->mensaje."</div>");
+        }else{
+            header("location: ../../usuarios.php?mensaje=<div class='alert alert-danger'>".$respuesta->mensaje."</div>");
+        }
 
     }else{
-        header('location: ../../usuarios.php?mensaje=Las contraseñas no son iguales');
+        header("location: ../../usuarios.php?mensaje=<div class='alert alert-danger'>Las contraseñas no son iguales</div>");
     }    
     
 

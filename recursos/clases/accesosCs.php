@@ -8,7 +8,7 @@ class Accesos extends Conexion{
     }
     public function login(){// completar metodo para logear con la pagina principal
         $data = (count(func_get_args()) > 0 ) ? func_get_args()[0] : func_get_args();
-        $sql = "SELECT nombre, apellido,correo,  pass, perfil FROM usuarios WHERE correo = ?";
+        $sql = "SELECT id, run, nombre, apellido, correo, pass, perfil FROM usuarios WHERE usuarios.correo=?;";
         
         $consulta = $this->prepare($sql);       
         $consulta->bind_param('s', $usuario);
@@ -17,10 +17,10 @@ class Accesos extends Conexion{
         $pass = $data['pass'];
         //ejecutamos la consulta
         $this->execute($consulta);
-        $consulta->bind_result($nombre,$apellido,$correo,$pass_db,$perfil);//donde voy a guardar los datos bind_result
+        $consulta->bind_result($nombre,$apellido,$correo,$pass,$perfil);//donde voy a guardar los datos bind_result
         $consulta->fetch();//leemos los datos resultantes
         //verificamos la contraseña
-        if ($pass==$pass_db) {
+        if ($pass==$pass) {
             //al ser un usuario válido, creamos un arreglo para ver almacenar los resultados 
             $info = array(
                 'estado' => true,
