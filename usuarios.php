@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include('recursos/clases/usuariosCs.php');
 include('templates/header.php');
 
 if(isset($_GET['mensaje'])){
@@ -7,6 +8,36 @@ if(isset($_GET['mensaje'])){
 }else{
     $mensaje = "";
 }
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $params = array(
+        'codigo'=>$id
+    );
+    //guardamos la respuesta del metodo mostrar del modelo
+    $user = json_decode($usuario->mostrar($params),true);
+    
+    if ($user['estado']==true) {
+        $_SESSION['usuario']=$user;
+        $run = $_SESSION['usuario']['run'];
+        $nombre = $_SESSION['usuario']['nombre'];
+        $apellido = $_SESSION['usuario']['apellido'];
+        $correo = $_SESSION['usuario']['correo'];
+        $perfil = $_SESSION['usuario']['perfil'];        
+    }
+
+    
+
+}else{
+    $id = "";
+    $run = "";
+    $nombre = "";
+    $apellido = "";
+    $correo = "";
+    $perfil = "";
+}
+
+
 
 ?>
 <?php echo $mensaje;?>
@@ -25,30 +56,30 @@ if(isset($_GET['mensaje'])){
                                 <div class="row">
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
                                         <label for="id">Código:</label>
-                                        <input type="text" disabled class="form-control" id="id" name="id" placeholder="id usuario">
+                                        <input type="text" disabled class="form-control" id="id" name="id" value="<?php echo $id;?>" placeholder="id usuario">
                                         <input type="hidden" name="idH">
                                     </div>
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
                                       <label for="run">Run:</label>
-                                      <input type="text" name="run" id="run" class="form-control" placeholder="Ingrese Run" aria-describedby="helpId">
+                                      <input type="text" name="run" value="<?php echo $run;?>" id="run" class="form-control" placeholder="Ingrese Run" aria-describedby="helpId">
                                     </div>
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
                                         <label for="nombre">Nombre:</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="ingrese su nombre">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $nombre;?>" placeholder="ingrese su nombre">
                                     </div>
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
                                         <label for="apellido">Apellido:</label>
-                                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="ingrese su apellido">
+                                        <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo $apellido;?>" placeholder="ingrese su apellido">
                                     </div>  
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
                                         <label for="correo">Correo:</label>
-                                        <input type="email" class="form-control" id="correo" name="correo" placeholder="ingrese su correo">
+                                        <input type="email" class="form-control" id="correo" name="correo" value="<?php echo $correo;?>" placeholder="ingrese su correo">
                                     </div>
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
                                         <label for="pass">Contraseña:</label>
-                                        <input type="password" class="form-control" id="pass" name="pass" placeholder="ingrese su contraseña">
+                                        <input type="password" class="form-control" id="pass" name="pass"  placeholder="ingrese su contraseña">
                                     </div>
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
                                         <label for="pass2">Repetir Contraseña:</label>
@@ -91,7 +122,7 @@ if(isset($_GET['mensaje'])){
                     </form>
                 </div>
                 <div class="card-footer text-muted">
-                    Footer
+                    
                 </div>
             </div>
         </div>
