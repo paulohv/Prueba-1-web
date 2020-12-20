@@ -17,13 +17,15 @@ class Accesos extends Conexion{
         $pass = $data['pass'];
         //ejecutamos la consulta
         $this->execute($consulta);
-        $consulta->bind_result($nombre,$apellido,$correo,$pass,$perfil);//donde voy a guardar los datos bind_result
+        $consulta->bind_result($nombre,$apellido,$correo,$pass_bd,$perfil);//donde voy a guardar los datos bind_result
         $consulta->fetch();//leemos los datos resultantes
         //verificamos la contraseña
-        if ($pass==$pass) {
+        if ($pass==$pass_bd) {
             //al ser un usuario válido, creamos un arreglo para ver almacenar los resultados 
             $info = array(
                 'estado' => true,
+                'id' => $id,
+                'run' => $run,
                 'nombre' => $nombre,
                 'apellido' =>$apellido,
                 'correo' =>$correo,
